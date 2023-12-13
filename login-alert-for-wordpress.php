@@ -3,7 +3,7 @@
  * Plugin Name: Login Alert for WordPress
  * Plugin URI: https://mpateldigital.com/
  * Description: Sends Email notifications to users upon login.
- * Version: 0.0.1
+ * Version: 0.0.2
  * Author: Mukesh Patel
  * Author URI: https://mpateldigital.com/
  * License: GPLv2 or later 
