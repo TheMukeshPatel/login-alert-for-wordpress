@@ -1,4 +1,4 @@
-=== Notify User on Login ===
+=== Login Alter for WordPress ===
 Contributors: TheMukeshPatel
 Tags: login, email, notification, login notification, security, user, user login
 Requires at least: 5.0
@@ -11,3 +11,4 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Sends email notifications to users upon login.
 
 == Description ==
+This plugin will send Email notification to the user upon login to site.
