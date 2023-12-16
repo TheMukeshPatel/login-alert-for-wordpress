@@ -55,7 +55,7 @@ function login_alert_for_wordpress_notice()
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'login_alert_for_wordpress_add_action_links' );
 function login_alert_for_wordpress_add_action_links( $links ) {
     $plugin_shortcuts = array(
-        '<a rel="noopener" title="Hire for Technical Support" href="https://mpateldigital.net/contact/" target="_blank">' . __('Work with Mukesh', 'login_alert_for_wordpress') . '</a>',
+        '<a rel="noopener" title="Hire for Technical Support" href="https://mpateldigital.com/contact/" target="_blank">' . __('Work with Mukesh', 'login_alert_for_wordpress') . '</a>',
         '<a rel="noopener" title="Show your support" href="https://ko-fi.com/mukeshpatel" target="_blank" style="color:#080;">' . __('Buy developer a coffee', 'login_alert_for_wordpress') . '</a>'
     );
     return array_merge( $links, $plugin_shortcuts );
