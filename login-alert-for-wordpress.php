@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Login Alert for WordPress
  * Plugin URI: https://mpateldigital.com/
- * Description: Sends Email notifications to users upon login.
- * Version: 0.0.1
+ * Description: Sends email notifications to users upon login.
+ * Version: 1.0.0
  * Author: Mukesh Patel
  * Author URI: https://mpateldigital.com/
  * License: GPLv2 or later 
@@ -16,22 +16,19 @@ if (!defined('ABSPATH')) {
 }
 
 /* Register activation hook. */
-register_activation_hook(__FILE__, 'login_alert_for_wordpress_activation_hook');
+register_activation_hook( __FILE__, 'login_alert_for_wordpress_activation_hook' );  
 /**
  * Runs only when the plugin is activated.
  * @since 0.0.1
  */
-function login_alert_for_wordpress_activation_hook()
-{
-    // Check nonce for security
-    check_admin_referer('login-alert-activation');
+function login_alert_for_wordpress_activation_hook() {
 
     /* Create transient data */
-    set_transient('login-alert-for-wordpress-activation-notice', true, 5);
+        set_transient( 'login-alert-for-wordpress-activation-notice', true, 5 );
 }
-
-add_action('admin_notices', 'login_alert_for_wordpress_notice');
-
+ 
+add_action( 'admin_notices', 'login_alert_for_wordpress_notice' );
+   
 /* Add admin notice */
 function login_alert_for_wordpress_notice()
 {
@@ -45,7 +42,7 @@ function login_alert_for_wordpress_notice()
         </style>
         <div class="updated notice is-dismissible">
             <p>
-                <?php echo esc_html__('😊 Thank you for using Notify User on Login. Plugin is started working. You do not need to configure anything', 'login_alert_for_wordpress'); ?>
+                <?php _e('😊 Thank you for using Login Alert for WordPress. Plugin is started working. You do not need to configure anything', 'login_alert_for_wordpress'); ?>
             </p>
         </div>
         <?php
@@ -55,26 +52,25 @@ function login_alert_for_wordpress_notice()
 }
 
 // Support links
-add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'login_alert_for_wordpress_add_action_links');
-function login_alert_for_wordpress_add_action_links($links)
-{
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'login_alert_for_wordpress_add_action_links' );
+function login_alert_for_wordpress_add_action_links( $links ) {
     $plugin_shortcuts = array(
-        '<a rel="noopener" title="Hire for Technical Support" href="https://mpateldigital.net/contact/" target="_blank" style="color: #d42e06;font-weight: 500;">' . __('Hire Me', 'login_alert_for_wordpress') . '</a>',
+        '<a rel="noopener" title="Hire for Technical Support" href="https://mpateldigital.net/contact/" target="_blank">' . __('Work with Mukesh', 'login_alert_for_wordpress') . '</a>',
         '<a rel="noopener" title="Show your support" href="https://ko-fi.com/mukeshpatel" target="_blank" style="color:#080;">' . __('Buy developer a coffee', 'login_alert_for_wordpress') . '</a>'
     );
-    return array_merge($links, $plugin_shortcuts);
+    return array_merge( $links, $plugin_shortcuts );
 }
 
 /**
- * Login Alert for WordPress Plugin Main Work
+ * Login Alert for WordPress - Main Work of Plugin
  */
 
 add_action('wp_login', 'login_alert_for_wordpress_email_notification', 10, 2);
 
 function login_alert_for_wordpress_email_notification($user_login, $user)
 {
-    // Get user email (sanitize and validate)
-    $user_email = is_email(sanitize_email($user->user_email)) ? sanitize_email($user->user_email) : '';
+    // Get user email (sanitize)
+    $user_email = sanitize_email($user->user_email);
 
     // Get user IP address
     $user_ip = esc_attr($_SERVER['REMOTE_ADDR']);
